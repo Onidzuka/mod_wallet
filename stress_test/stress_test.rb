@@ -1,9 +1,7 @@
 # Instructions
-# 1. modify GetAccountBalance interactor to return Account#current_balance_amount instead of Account#held_balance_amount
-# because it returns available balance amount. In test we need current balance amount
-# 2. before running the test, clear the database. WARNING! this command will clean the database: rake db:migrate:reset db:seed
-# 3. run puma web server in a clustered mode: puma -t 8:32 -w 4 -p 3000
-# 4. run test: ruby stress_test/stress_test.rb
+# 1. rake db:migrate:reset db:seed          # before running the test, clear the database
+# 2. puma -t 8:32 -w 4 -p 3000              # run puma web server in a clustered mode
+# 3. ruby stress_test/stress_test.rb        # run test
 
 require_relative 'mod-wallet'
 require 'parallel'
