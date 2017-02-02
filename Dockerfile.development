@@ -1,0 +1,8 @@
+FROM tpay/dependencies
+
+ENV BUNDLE_PATH /bundle/mod_wallet_engine
+
+ENV app /app
+RUN mkdir $app
+WORKDIR $app
+COPY . $app

@@ -1,0 +1,1 @@
+CorrespondentAccount.create!(amount: 0)

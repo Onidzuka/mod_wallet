@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  host: <%= ENV.fetch('DB_HOST', 'localhost') %>
+  port: <%= ENV.fetch('DB_PORT', '5432') %>
+  username: <%= ENV.fetch('DB_USER', nil) %>
+  password: <%= ENV.fetch('DB_PASS', nil) %>
+  pool: 30
+  timeout: 5000
+
+development:
+  <<: *default
+  database: <%= ENV.fetch('DB_NAME', 'development_tpay_wallet_engine') %>
+
+test:
+  <<: *default
+  database: <%= ENV.fetch('DB_NAME', 'test_tpay_wallet_engine') %>
