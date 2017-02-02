@@ -631,6 +631,8 @@ RSpec.describe AccountsController do
   end
 
   describe '#history_dates' do
+    let(:account1) {create(:account)}
+
     context 'account history dates request' do
       before do
         create(:document, target_account_id: account1.id, created_at: '2015-12-01'.to_datetime, amount: '100.0')
