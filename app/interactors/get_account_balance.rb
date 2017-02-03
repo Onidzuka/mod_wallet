@@ -21,7 +21,8 @@ class GetAccountBalance
 
   def get_balance
     context[:balance] = {
-      held_balance_amount: account.held_balance_amount.to_s,
+      current_balance_amount:   account.current_balance_amount.to_s,
+      held_balance_amount:      account.held_balance_amount.to_s,
       available_balance_amount: account.available_balance_amount.to_s
     }
   end

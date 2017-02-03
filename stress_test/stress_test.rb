@@ -16,7 +16,7 @@ class Application
 
   def run
     agent_id = wallet.create_account(123456789, 'agent')
-    wallet.create_emission_document(123456789, agent_id, 10000.0)
+    wallet.create_emission_document(123456789, 123456789, agent_id, 10000.0)
     wallet.execute_document(123456789)
 
     10.times do |index|
@@ -25,11 +25,13 @@ class Application
       accounts.push(individual_id)
     end
 
+    folder_id = 10
     document_id = 10
 
     accounts.each do |account_id|
+      folder_id += 1
       document_id += 1
-      wallet.create_transfer_document(document_id, agent_id, account_id, 1000.0)
+      wallet.create_transfer_document(document_id, folder_id, agent_id, account_id, 1000.0)
       wallet.execute_document(document_id)
     end
 
@@ -39,13 +41,15 @@ class Application
     puts "----------------------------------------------------"
 
     source_account = accounts.first
+    folder_id = 30
     document_id = 30
 
     Parallel.map(1..500, in_processes: 4, progress: 'In progress..') do
+      folder_id += 1
       document_id += 1
       target_account = (accounts - [source_account]).sample
 
-      wallet.create_transfer_document(document_id, source_account, target_account, 10.0)
+      wallet.create_transfer_document(document_id, folder_id, source_account, target_account, 10.0)
       wallet.execute_document(document_id)
       source_account = target_account
     end
